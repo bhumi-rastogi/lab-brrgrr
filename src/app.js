@@ -67,23 +67,89 @@ document.querySelector(".btn-patty").onclick = function () {
 };
 
 // Trial 2 - Setup event listener for the cheese button
-
+document.querySelector(".btn-cheese").onclick = function () {
+  state.Cheese = !state.Cheese;
+  var cheese = document.querySelector(".btn-cheese");
+  if(state.Cheese){
+    cheese.classList.add("active")
+  }else {
+    cheese.classList.remove("active")
+  }
+  renderAll();
+};
 
 // Trial 2 - Setup event listener for the tomatoes button
+document.querySelector(".btn-tomatoes").onclick = function () {
+  state.Tomatoes = !state.Tomatoes;
+  var tomatoes = document.querySelector(".btn-tomatoes");
+  if(state.Tomatoes){
+    tomatoes.classList.add("active")
+  }else {
+    tomatoes.classList.remove("active")
+  }
+  renderAll();
+};
 
 
 // Trial 2 - Setup event listener for the onion button
+document.querySelector(".btn-onions").onclick = function () {
+  state.Onions = !state.Onions;
+  var onion = document.querySelector(".btn-onions");
+  if(state.Onions){
+    onion.classList.add("active")
+  }else {
+    onion.classList.remove("active")
+  }
+  renderAll();
+};
 
 
 // Trial 2 - Setup event listener for the lettuce button
+document.querySelector(".btn-lettuce").onclick = function () {
+  state.Lettuce = !state.Lettuce;
+  var lettuce = document.querySelector(".btn-lettuce");
+  if(state.Lettuce){
+    lettuce.classList.add("active")
+  }else {
+    lettuce.classList.remove("active")
+  }
+  renderAll();
+};
 
 
 //Challenge 1 - Add/Remove the class active to the buttons based on state
-
+//Changes done above in the same event listener action
 
 //Challenge 2 - Render only the items selected in the ingredients board based on the state
-
+function renderIngredientsBoard(){
+  var items = document.getElementsByClassName("items");
+  for(var i = 0; i < items.length; i++){
+    var item = items[i].textContent;
+    if(state[item]){
+      items[i].style = "display:none";
+    }
+    else {
+      items[i].style ="display:block";
+    }
+  
+  }
+}
 
 //Judgement 1
 //In the p element having price-details as the class, display the calculated
 //price based on ingredients
+function renderPrice(){
+  var totalBill = calculatePrice();
+  var price = document.querySelector(".price-details");
+  price.textContent = `INR ${totalBill}.`;
+}
+
+function calculatePrice() {
+  var total = wholeWheatBun;
+  for (var i in ingredients){
+    if(state[i]){
+      total += ingredients[i];
+    }
+  }
+  return total;
+}
