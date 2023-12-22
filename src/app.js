@@ -56,14 +56,32 @@ let patty = document.querySelector("#cheese");
 }
 
 function renderTomatoes() {
+  let tomatoes = document.querySelector("#tomato");
+  if (state.Tomatoes) {
+    tomatoes.style.display = "inherit";
+  } else {
+    tomatoes.style.display = "none";
+  }
   //Trial 1 - Change the visibility of Tomatoes based on state by manipulating the DOM
 }
 
 function renderOnions() {
+  let onions = document.querySelector("#onion");
+  if (state.Onions) {
+    onions.style.display = "inherit";
+  } else {
+    onions.style.display = "none";
+  }
   //Trial 1 - Change the visibility of Onions based on state by manipulating the DOM
 }
 
 function renderLettuce() {
+  let lettuce = document.querySelector("#lettuce");
+  if (state.Lettuce) {
+    lettuce.style.display = "inherit";
+  } else {
+    lettuce.style.display = "none";
+  }
   //Trial 1 - Change the visibility of Lettuce based on state by manipulating the DOM
 }
 
@@ -75,24 +93,13 @@ document.querySelector(".btn-patty").onclick = function () {
 // Trial 2 - Setup event listener for the cheese button
 document.querySelector(".btn-cheese").onclick = function () {
   state.Cheese = !state.Cheese;
-  var cheese = document.querySelector(".btn-cheese");
-  if(state.Cheese){
-    cheese.classList.add("active")
-  }else {
-    cheese.classList.remove("active")
-  }
   renderAll();
 };
 
 // Trial 2 - Setup event listener for the tomatoes button
 document.querySelector(".btn-tomatoes").onclick = function () {
   state.Tomatoes = !state.Tomatoes;
-  var tomatoes = document.querySelector(".btn-tomatoes");
-  if(state.Tomatoes){
-    tomatoes.classList.add("active")
-  }else {
-    tomatoes.classList.remove("active")
-  }
+  
   renderAll();
 };
 
@@ -100,12 +107,6 @@ document.querySelector(".btn-tomatoes").onclick = function () {
 // Trial 2 - Setup event listener for the onion button
 document.querySelector(".btn-onions").onclick = function () {
   state.Onions = !state.Onions;
-  var onion = document.querySelector(".btn-onions");
-  if(state.Onions){
-    onion.classList.add("active")
-  }else {
-    onion.classList.remove("active")
-  }
   renderAll();
 };
 
@@ -113,18 +114,23 @@ document.querySelector(".btn-onions").onclick = function () {
 // Trial 2 - Setup event listener for the lettuce button
 document.querySelector(".btn-lettuce").onclick = function () {
   state.Lettuce = !state.Lettuce;
-  var lettuce = document.querySelector(".btn-lettuce");
-  if(state.Lettuce){
-    lettuce.classList.add("active")
-  }else {
-    lettuce.classList.remove("active")
-  }
   renderAll();
 };
 
 
 //Challenge 1 - Add/Remove the class active to the buttons based on state
 //Changes done above in the same event listener action
+function renderButtons(){
+  var buttons = document.getElementsByClassName("button");
+  for(var i = 0; i < buttons.length; i++){
+    if(state[buttons[i].textContent]){
+      buttons[i].classList.add("active");
+    }
+    else {
+      buttons[i].classList.remove("active");
+    }
+  }
+}
 
 //Challenge 2 - Render only the items selected in the ingredients board based on the state
 function renderIngredientsBoard(){
